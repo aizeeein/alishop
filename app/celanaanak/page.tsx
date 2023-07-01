@@ -8,7 +8,7 @@ const BajuAnak = () => {
         h-full
         flex
         flex-col
-        pt-20
+        pt-24
         p-4        
         "
     >
