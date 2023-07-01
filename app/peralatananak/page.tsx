@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const BajuAnak = () => {
+const PeralatanAnak = () => {
   return (
     <div
       className="
@@ -13,9 +13,11 @@ const BajuAnak = () => {
         "
     >
       <div className="flex justify-center">List of item</div>
-      <Link href="https://id-id.facebook.com/">1. Topi Baby</Link>
+      <Link className="pt-10" href="https://shope.ee/A9n1hIViiW?share_channel_code=1">
+        1. Glass food container Disney Mickey Minnie 130 - 200ml mpasi
+      </Link>
     </div>
   );
 };
 
-export default BajuAnak;
+export default PeralatanAnak;

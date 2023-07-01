@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const BajuAnak = () => {
+const AtributAnak = () => {
   return (
     <div
       className="
@@ -13,9 +13,14 @@ const BajuAnak = () => {
         "
     >
       <div className="flex justify-center">List of item</div>
-      <Link href="https://id-id.facebook.com/">1. Celana Baby</Link>
+      <Link
+        className="pt-10"
+        href="https://shope.ee/6pWYYFrA1J?share_channel_code=1"
+      >
+        1. KIKIDOO Topi Bucket Balita Korea Karakter Animal
+      </Link>
     </div>
   );
 };
 
-export default BajuAnak;
+export default AtributAnak;

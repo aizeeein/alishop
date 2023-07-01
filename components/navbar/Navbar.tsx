@@ -17,7 +17,9 @@ const Navbar = () => {
               md:justify-between        
               "
           >
-            <Link className="font-bold text-lg" href="/">AliShop</Link>
+            <Link className="font-bold text-lg" href="/">
+              AliShop
+            </Link>
             <div
               className="            
             border-[1px]
@@ -51,7 +53,7 @@ const Navbar = () => {
                   Baju Anak
                 </Link>
                 <Link
-                  href="celanaanak"
+                  href="atributanak"
                   className="
                 text-sm
                 font-semibold
@@ -62,10 +64,10 @@ const Navbar = () => {
                 rounded-full         
                 "
                 >
-                  Celana Anak
+                  Atribut Anak
                 </Link>
                 <Link
-                  href="topianak"
+                  href="peralatananak"
                   className="
                 text-sm
                 font-semibold
@@ -76,7 +78,7 @@ const Navbar = () => {
                 rounded-full         
                 "
                 >
-                  Topi Anak
+                  Peralatan Anak
                 </Link>
               </div>
             </div>
