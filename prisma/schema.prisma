@@ -13,6 +13,7 @@ model Store {
   name      String
   userId    String
   products  Product[] @relation("StoreToProduct")
+  categories  Category[] @relation("StoreToCategory")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -24,8 +25,24 @@ model Product {
   label     String
   imageUrl  String
   linkUrl   String
+  categoryId String
+  category  Category @relation("CategoryToProduct", fields: [categoryId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([storeId])
+  @@index([categoryId])
+}
+
+model Category {
+  id        String  @id @default(uuid())
+  storeId   String
+  store Store @relation("StoreToCategory", fields: [storeId], references: [id])
+  products  Product[] @relation("CategoryToProduct")
+  name  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([storeId])
+  
 }

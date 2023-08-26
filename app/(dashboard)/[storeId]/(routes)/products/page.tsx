@@ -14,6 +14,9 @@ const ProductsPage = async ({
         where: {
             storeId: params.storeId,            
         },
+        include: {
+            category: true,
+        },
         orderBy: {
             createdAt: 'desc'
         }
@@ -22,6 +25,7 @@ const ProductsPage = async ({
       id: item.id,
       label: item.label,
       linkUrl: item.linkUrl,
+      category: item.category.name,
       createdAt: format(item.createdAt, "MMM do, yyyy"),
     }));
     return ( 

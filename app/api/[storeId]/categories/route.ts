@@ -10,25 +10,14 @@ export async function POST(
     const { userId } = auth();
     const body = await req.json();
 
-    const { label, imageUrl, linkUrl, categoryId } = body;
+    const { name } = body;
 
     if (!userId) {
       return new NextResponse("Unauthenticated", { status: 401 });
     }
 
-    if (!label) {
-      return new NextResponse("Label is required", { status: 400 });
-    }
-
-    if (!imageUrl) {
-      return new NextResponse("Image Url is required", { status: 400 });
-    }
-
-    if (!linkUrl) {
-      return new NextResponse("Link Url is required", { status: 400 });
-    }
-    if (!categoryId) {
-      return new NextResponse("Category Id is required", { status: 400 });
+    if (!name) {
+      return new NextResponse("Name is required", { status: 400 });
     }
 
     if (!params.storeId) {
@@ -46,19 +35,16 @@ export async function POST(
       return new NextResponse("Unauthorized", { status: 403 });
     }
 
-    const product = await prismadb.product.create({
-      data: {
-        label,
-        imageUrl,
-        linkUrl,
-        categoryId,
+    const category = await prismadb.category.create({
+      data: {        
+        name,
         storeId: params.storeId,
       },
     });
 
-    return NextResponse.json(product);
+    return NextResponse.json(category);
   } catch (error) {
-    console.log("[PRODUCTS_POST", error);
+    console.log("[CATEGORIES_POST", error);
     return new NextResponse("Internal error", { status: 500 });
   }
 }
@@ -68,28 +54,19 @@ export async function GET(
   { params }: { params: { storeId: string } }
 ) {
   try {
-    const { searchParams } = new URL(req.url);
-    const categoryId = searchParams.get("categoryId") || undefined;
     if (!params.storeId) {
       return new NextResponse("Store Id is required", { status: 400 });
     }
 
-    const products = await prismadb.product.findMany({
+    const categories = await prismadb.category.findMany({
       where: {
         storeId: params.storeId,
-        categoryId,
-      },
-      include: {
-        category: true,
-      },
-      orderBy: {
-        createdAt: "desc",
       },
     });
 
-    return NextResponse.json(products);
+    return NextResponse.json(categories);
   } catch (error) {
-    console.log("[PRODUCTS_GET", error);
+    console.log("[CATEGORIES_GET", error);
     return new NextResponse("Internal error", { status: 500 });
   }
 }

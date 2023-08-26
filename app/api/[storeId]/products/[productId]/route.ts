@@ -32,7 +32,7 @@ export async function PATCH(
     const { userId } = auth();
     const body = await req.json();
 
-    const { label, imageUrl, linkUrl } = body;
+    const { label, imageUrl, linkUrl, categoryId } = body;
 
     if (!userId) {
       return new NextResponse("Unauthenticated", { status: 401 });
@@ -47,6 +47,10 @@ export async function PATCH(
 
     if (!linkUrl) {
       return new NextResponse("Link Url is required", { status: 400 });
+    }
+
+    if (!categoryId) {
+      return new NextResponse("Category Id is required", { status: 400 });
     }
 
     if (!params.productId) {
@@ -72,6 +76,7 @@ export async function PATCH(
         label,
         imageUrl,
         linkUrl,
+        categoryId
       },
     });
 
